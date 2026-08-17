@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+hexshield-env/
+
+# Environment / secrets
+.env
+.env.local
+*.env
+
+# Logs & temp
+*.log
+*.tmp
+hexstrike.log
+
+# Editor / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Test scratch (kept, but these are generated at runtime)
+tests/_scratch/

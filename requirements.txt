@@ -1,0 +1,7 @@
+# HexShield runtime dependencies.
+# The core is stdlib-only; this file exists for optional niceties.
+# `rich` is optional (used only if you add the pretty CLI renderer later).
+# No model SDKs required — the LLM layer uses urllib against Ollama/OpenAI-compatible APIs.
+
+# Optional (uncomment to enable rich rendering):
+# rich>=13.0
