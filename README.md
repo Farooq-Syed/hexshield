@@ -8,6 +8,10 @@ Analyzes logs, triages alerts, checks hardening, correlates IOCs, triages
 suspicious files, and walks incident response — powered by a **small local LLM**
 with an automatic **GPU → CPU → API → rule-based** fallback chain.
 
+Developed with AI coding assistance; the author chose the defensive scope,
+tool boundaries, safety constraints, evaluation checks, debugging direction,
+and final interpretation of the results.
+
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
 ![License](https://img.shields.io/badge/License-MIT-green)
 ![Tests](https://img.shields.io/badge/tests-94%2F94-brightgreen)
@@ -107,6 +111,12 @@ If no LLM is reachable, HexShield prints setup instructions and lets you
 continue without an LLM or exit. See **[docs/CHANGING_MODELS.md](docs/CHANGING_MODELS.md)**
 for the complete guide to swapping models (flag, env var, API key, or a new
 provider).
+
+## Authorship and AI use
+
+- The project framing, defensive threat model, tool restrictions, and claims are the author's.
+- AI assistance was used for coding support and drafting help.
+- The author reviewed, edited, tested, and verified the final code and write-up.
 
 ## Tool safety contract
 

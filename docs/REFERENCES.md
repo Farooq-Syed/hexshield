@@ -59,3 +59,9 @@ HexShield's core design decision is the opposite and is documented in the
 README "Tool safety contract": deterministic, read-only analysis + an LLM that
 explains and recommends — because a defensive assistant that can't cause harm
 is one you can hand to your whole team.
+
+## AI-use note
+
+AI coding assistance was used during implementation and drafting. The defensive
+scope, tool safety model, debugging decisions, and final interpretation were
+directed and verified by Farooq Syed.
