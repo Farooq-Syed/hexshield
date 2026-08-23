@@ -162,12 +162,16 @@ automatically.
 Three suites, **94/94 passing** on Windows 11 / Python 3.12 / RTX 4060:
 
 ```bash
+python -m pytest -q              # CI-friendly wrapper for the core suites
 python tests/test_rigorous.py      # fast, deterministic, 46/46
 python tests/test_cli_smoke.py     # end-to-end CLI, 28/28
 python tests/test_llm_quality.py   # LLM grounding (slow), 20/20
 ```
 
-See **[docs/TESTING.md](docs/TESTING.md)** for results and the model comparison table.
+The pytest entry point wraps the deterministic regression and CLI smoke suites so
+GitHub Actions and reviewers get a standard pass/fail signal. See
+**[docs/TESTING.md](docs/TESTING.md)** for detailed results and the model
+comparison table.
 
 ## Project layout
 

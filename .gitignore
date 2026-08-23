@@ -28,3 +28,4 @@ Thumbs.db
 
 # Test scratch (kept, but these are generated at runtime)
 tests/_scratch/
+.pytest_cache/
