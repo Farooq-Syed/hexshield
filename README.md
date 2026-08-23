@@ -14,7 +14,7 @@ and final interpretation of the results.
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
 ![License](https://img.shields.io/badge/License-MIT-green)
-![Tests](https://img.shields.io/badge/tests-94%2F94-brightgreen)
+![Tests](https://img.shields.io/badge/tests-94%2F94%20(3%20suites)-brightgreen)
 ![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux-lightgrey)
 
 </div>
@@ -162,19 +162,25 @@ automatically.
 
 ## Testing
 
-Three suites, **94/94 passing** on Windows 11 / Python 3.12 / RTX 4060:
+The three scripted suites together total **94 checks** (46 + 28 + 20) on
+Windows 11 / Python 3.12 / RTX 4060. The `test_cli_smoke` and `test_llm_quality`
+suites call a reachable LLM, so their counts are environment-dependent.
 
 ```bash
-python -m pytest -q              # CI-friendly wrapper for the core suites
-python tests/test_rigorous.py      # fast, deterministic, 46/46
-python tests/test_cli_smoke.py     # end-to-end CLI, 28/28
-python tests/test_llm_quality.py   # LLM grounding (slow), 20/20
+python -m pytest -q               # fast, deterministic CI wrapper (5 collected tests, ~4s)
+python tests/test_rigorous.py       # adversarial/edge-case on every tool, 46/46
+python tests/test_cli_smoke.py      # end-to-end CLI, 28/28 (with LLM) or deterministic with --no-llm
+python tests/test_llm_quality.py    # LLM grounding (slow), 20/20, needs a reachable model
 ```
 
-The pytest entry point wraps the deterministic regression and CLI smoke suites so
-GitHub Actions and reviewers get a standard pass/fail signal. See
-**[docs/TESTING.md](docs/TESTING.md)** for detailed results and the model
-comparison table.
+`python -m pytest -q` is the CI entry point: it shells out to the deterministic
+rigorous and CLI-smoke* scripts and adds unit tests for the host-inspection
+tools, so GitHub Actions and reviewers get a stable pass/fail signal without
+depending on a local LLM. See **[docs/TESTING.md](docs/TESTING.md)** for the
+full results, the model-comparison table, and the regression history.
+
+\* CLI smoke is run with `--no-llm` inside the pytest wrapper so the signal is
+stable; the LLM-backed CLI paths are covered by `test_llm_quality.py`.
 
 ## Project layout
 

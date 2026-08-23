@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+import os
 import sys
 from typing import List, Optional
 
@@ -44,7 +45,7 @@ def _build_parser() -> argparse.ArgumentParser:
 
     def _llm_opts(sp) -> None:
         sp.add_argument("--ollama-model", default=None, help="Ollama model (default robit/ornith:9b).")
-        sp.add_argument("--ollama-host", default="http://127.0.0.1:11434", help="Ollama host.")
+        sp.add_argument("--ollama-host", default=None, help="Ollama host (or HEXSHIELD_OLLAMA_HOST).")
         sp.add_argument("--api-model", default=None, help="API model name (uses HEXSHIELD_API_KEY).")
         sp.add_argument("--api-base", default=None, help="API base URL.")
         sp.add_argument("--no-api", action="store_true", help="Disable the API fallback provider.")
@@ -77,12 +78,18 @@ def _build_parser() -> argparse.ArgumentParser:
 
 
 def _make_chain(args) -> LLMChain:
+    # Environment variables document the no-flag configuration path. Flags win.
+    ollama_model = args.ollama_model or os.environ.get("HEXSHIELD_OLLAMA_MODEL", "robit/ornith:9b")
+    ollama_host = args.ollama_host or os.environ.get("HEXSHIELD_OLLAMA_HOST", "http://127.0.0.1:11434")
+    api_model = args.api_model or os.environ.get("HEXSHIELD_API_MODEL", "")
+    api_key = os.environ.get("HEXSHIELD_API_KEY", "")
+    api_base = args.api_base or os.environ.get("HEXSHIELD_API_BASE", "")
     return get_llm_chain(
-        ollama_model=args.ollama_model or "robit/ornith:9b",
-        ollama_host=args.ollama_host,
-        api_model=args.api_model or "",
-        api_key="",  # read from env inside provider
-        api_base=args.api_base or "",
+        ollama_model=ollama_model,
+        ollama_host=ollama_host,
+        api_model=api_model,
+        api_key=api_key,
+        api_base=api_base,
         enable_api=not args.no_api,
     )
 

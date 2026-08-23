@@ -1,4 +1,21 @@
-from .provider import LLMError, LLMProvider  # noqa: F401
-from .api_provider import OpenAICompatProvider  # noqa: F401
-from .ollama_provider import OllamaProvider  # noqa: F401
-from .chain import LLMChain, get_llm_chain  # noqa: F401
+"""Orchestration glue (reserved).
+
+The LLM providers and chain live in :mod:`hexshield.llm`; re-export them here so
+``from hexshield.engine import ...`` works for consumers expecting a single
+entry point.
+"""
+from hexshield.llm import (  # noqa: F401
+    LLMChain,
+    LLMProvider,
+    OllamaProvider,
+    OpenAICompatProvider,
+    get_llm_chain,
+)
+
+__all__ = [
+    "LLMChain",
+    "LLMProvider",
+    "OllamaProvider",
+    "OpenAICompatProvider",
+    "get_llm_chain",
+]
