@@ -49,7 +49,7 @@ Requires Python 3.10+ (tested 3.12). No install needed:
 git clone https://github.com/Farooq-Syed/hexshield
 cd hexshield
 
-python run.py list      # see the 6 tools
+python run.py list      # see the 8 tools
 python run.py health    # which LLM providers are reachable
 ```
 
@@ -81,7 +81,7 @@ python run.py ask "What are the first signs of a kerberoasting attack in Windows
 
 Deterministic-only (skip the LLM): add `--no-llm`. JSON output: add `--json`.
 
-## The 6 tools
+## The 8 tools
 
 | Tool              | Area              | Mirrors red-team            | Example trigger                |
 | ----------------- | ----------------- | --------------------------- | ------------------------------ |
@@ -91,6 +91,8 @@ Deterministic-only (skip the LLM): add `--no-llm`. JSON output: add `--json`.
 | `ioc_lookup`      | Threat intel      | OSINT recon                 | IPs, domains, hashes, CVEs     |
 | `file_triage`     | Malware triage    | `strings`/`exiftool`/`binwalk` | Packed binaries, suspicious strings |
 | `incident_runbook`| Incident response | (blue core)                 | Ransomware, phishing, DDoS     |
+| `exposure_check`  | Host exposure     | Service enumeration         | Broadly bound risky services   |
+| `persistence_check` | Persistence audit | Autorun enumeration        | Run keys, tasks, cron, autostart |
 
 Every offensive tool has a read-only defensive counterpart: nmap → "what's
 exposed on *my* host", hydra → "test *my* own credentials", mimikatz-signals →
@@ -156,6 +158,7 @@ automatically.
 - **[docs/TESTING.md](docs/TESTING.md)** — test suites, results, regression history
 - **[docs/ROADMAP.md](docs/ROADMAP.md)** — future plans (MCP bridge, dashboard, more tools)
 - **[docs/REFERENCES.md](docs/REFERENCES.md)** — citations & inspirations
+- **[docs/EXTERNAL_VALIDATION.md](docs/EXTERNAL_VALIDATION.md)** — analyst-study design and current claim boundary
 
 ## Testing
 
